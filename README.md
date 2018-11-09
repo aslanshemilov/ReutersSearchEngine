@@ -20,4 +20,5 @@ It’s a very well-known benchmark which has been a considerable aid in the deve
 | People     | List of people       | String     |
 | Companies     | List of companies      | String     |
 | Exchanges     | List of exchanges      | String     |
+| Author     | Author of article      | String     |
 | Body     | Text body of article      | String     |
