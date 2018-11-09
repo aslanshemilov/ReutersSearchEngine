@@ -13,5 +13,11 @@ It’s a very well-known benchmark which has been a considerable aid in the deve
 
 | Attribute | Description | Type |
 | :---         |     :---:      |          ---: |
-| git status   | git status     | git status    |
-| git diff     | git diff       | git diff      |
+| Date   | Article date     | Date    |
+| Title     | Article title       | String     |
+| Places     | List of places       | String     |
+| Orgs     | List of organizations       | String     |
+| People     | List of people       | String     |
+| Companies     | List of companies      | String     |
+| Exchanges     | List of exchanges      | String     |
+| Body     | Text body of article      | String     |
