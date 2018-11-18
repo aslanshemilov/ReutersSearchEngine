@@ -14,8 +14,8 @@ import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.store.FSDirectory;
 
-public class LuceneWriteIndex 
-{
+public class LuceneWriteIndex {
+
 	private static final String INDEX_DIR = "c:/temp/lucene6index";
 	
 	public static void index(Reuters r) throws Exception{
@@ -33,8 +33,8 @@ public class LuceneWriteIndex
 	    writer.close();
 		
 	}
-	public static void main(String[] args) throws Exception 
-	{
+
+	public static void main(String[] args) throws Exception {
 		IndexWriter writer = createWriter();
 		List<Document> documents = new ArrayList<>();
 		
@@ -52,24 +52,9 @@ public class LuceneWriteIndex
 	    writer.close();
 	}
 
-	private static Document createReutersDocument(Reuters r) 
-	{
-//	    private Integer NEWID;
-//	    private String DATE;
-//	    private String TOPICS;
-//	    private String PLACES;
-//	    private String PEOPLE;
-//	    private String ORGS;
-//	    private String EXCHANGES;
-//	    private String COMPANIES;
-//	    private String UNKNOWN;
-//	    private Text TEXT;
-//		 private String TITLE;
-//		    private String DATELINE;
-//		    private String BODY;		
+	private static Document createReutersDocument(Reuters r) {		
 	    
     	Document document = new Document();
-    	//document.add(new TextField("id", r.NEWID , Field.Store.YES));
     	document.add(new TextField("DATE", r.getDATE() , Field.Store.YES));
     	document.add(new TextField("TOPICS", r.getTOPICS() , Field.Store.YES));
     	document.add(new TextField("PLACES", r.getPLACES() , Field.Store.YES));
@@ -83,8 +68,8 @@ public class LuceneWriteIndex
     	document.add(new TextField("BODY", r.getTEXT().getBODY() , Field.Store.YES));
     	return document;
     }
-	private static Document createDocument(Integer id, String firstName, String lastName, String website) 
-	{
+
+	private static Document createDocument(Integer id, String firstName, String lastName, String website) {
     	Document document = new Document();
     	document.add(new StringField("id", id.toString() , Field.Store.YES));
     	document.add(new TextField("firstName", firstName , Field.Store.YES));
@@ -92,8 +77,8 @@ public class LuceneWriteIndex
     	document.add(new TextField("website", website , Field.Store.YES));
     	return document;
     }
-	private static IndexWriter createWriter() throws IOException 
-	{
+
+	private static IndexWriter createWriter() throws IOException {
 		FSDirectory dir = FSDirectory.open(Paths.get(INDEX_DIR));
 		IndexWriterConfig config = new IndexWriterConfig(new StandardAnalyzer());
 		IndexWriter writer = new IndexWriter(dir, config);

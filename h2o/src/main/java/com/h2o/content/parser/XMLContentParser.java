@@ -7,10 +7,9 @@ import java.io.InputStream;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
-//https://howtodoinjava.com/jaxb/jaxb-unmarshaller-example/
+
 public class XMLContentParser {
-	public static void main(String[] args)
-    {
+	public static void main(String[] args){
 
 		String fileName = "data/reuters/sgm/employee.xml";
  
@@ -22,18 +21,13 @@ public class XMLContentParser {
         File xmlFile = new File(fileName);
          
         JAXBContext jaxbContext;
-        try
-        {
+        try {
             jaxbContext = JAXBContext.newInstance(Employee.class);
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
             Employee employee = (Employee) jaxbUnmarshaller.unmarshal(xmlFile);
         	
             System.out.println(employee);
-        	
-            
-        }
-        catch (JAXBException e)
-        {
+        } catch (JAXBException e) {
             e.printStackTrace();
         }
     }

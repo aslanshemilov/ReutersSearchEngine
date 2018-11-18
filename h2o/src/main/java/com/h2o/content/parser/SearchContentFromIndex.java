@@ -14,15 +14,14 @@ import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
  
-public class SearchContentFromIndex 
-{
+public class SearchContentFromIndex {
+
     //directory contains the lucene indexes
     //private static final String INDEX_DIR = "indexedFiles";
 	private static final String INDEX_DIR = "C:\\Users\\rusye\\git\\h2o\\h2o\\index";
 	
  
-    public static void main(String[] args) throws Exception 
-    {
+    public static void main(String[] args) throws Exception {
         //Create lucene searcher. It search over a single IndexReader.
         IndexSearcher searcher = createSearcher();
          
@@ -33,15 +32,13 @@ public class SearchContentFromIndex
         System.out.println("Total Results :: " + foundDocs.totalHits);
          
         //Let's print out the path of files which have searched term
-        for (ScoreDoc sd : foundDocs.scoreDocs) 
-        {
+        for (ScoreDoc sd : foundDocs.scoreDocs) {
             Document d = searcher.doc(sd.doc);
             System.out.println("Path : "+ d.get("path") + ", Score : " + sd.score);
         }
     }
      
-    private static TopDocs searchInContent(String textToFind, IndexSearcher searcher) throws Exception
-    {
+    private static TopDocs searchInContent(String textToFind, IndexSearcher searcher) throws Exception {
         //Create search query
         QueryParser qp = new QueryParser("contents", new StandardAnalyzer());
         Query query = qp.parse(textToFind);
@@ -51,8 +48,7 @@ public class SearchContentFromIndex
         return hits;
     }
  
-    private static IndexSearcher createSearcher() throws IOException 
-    {
+    private static IndexSearcher createSearcher() throws IOException {
         Directory dir = FSDirectory.open(Paths.get(INDEX_DIR));
          
         //It is an interface for accessing a point-in-time view of a lucene index

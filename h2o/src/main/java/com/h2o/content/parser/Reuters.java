@@ -35,17 +35,10 @@ public class Reuters implements Serializable {
     private String COMPANIES;
     private String UNKNOWN;
     private Text TEXT;
-//    private String TEXT;
-//    private String TITLE;
-//    private String DATELINE;
-//    private String BODY;
  
     public Reuters() {
         super();
     }
- 
-    //Setters and Getters
- 
  
     // It is called immediately after the object is created and before the unmarshalling begins.
     // The callback provides an opportunity to initialize JavaBean properties prior to unmarshalling.
@@ -58,9 +51,6 @@ public class Reuters implements Serializable {
     void afterUnmarshal(Unmarshaller unmarshaller, Object parent) {
         System.out.println("After Unmarshaller Callback");
     }
-
-
-
 
 	public Integer getNEWID() {
 		return NEWID;
@@ -152,9 +142,5 @@ public class Reuters implements Serializable {
 				+ PEOPLE + ", ORGS=" + ORGS + ", EXCHANGES=" + EXCHANGES + ", COMPANIES=" + COMPANIES + ", UNKNOWN="
 				+ UNKNOWN + ", TEXT=" + TEXT + "]";
 	}
-
-
-
-
 
 }

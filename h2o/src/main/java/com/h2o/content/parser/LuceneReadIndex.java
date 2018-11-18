@@ -15,55 +15,39 @@ import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 
-public class LuceneReadIndex 
-{
+public class LuceneReadIndex {
+
 	private static final String INDEX_DIR = "c:/temp/lucene6index";
 
-	public static void main(String[] args) throws Exception 
-	{
+	public static void main(String[] args) throws Exception {
 		IndexSearcher searcher = createSearcher();
 		
 		//Search by ID
-//		TopDocs foundDocs = searchById(1, searcher);
-//		
-//		System.out.println("Toral Results :: " + foundDocs.totalHits);
-//		
-//		for (ScoreDoc sd : foundDocs.scoreDocs) 
-//		{
-//			Document d = searcher.doc(sd.doc);
-//			System.out.println(String.format(d.get("firstName")));
-//		}
-//		
-//		//Search by firstName
-//		TopDocs foundDocs1 = searchByFirstName("consignment", searcher);
 		TopDocs foundDocs2 = searchByKeyword("consignment", searcher);
 		
 		System.out.println("Toral Results :: " + foundDocs2.totalHits);
 		
-		for (ScoreDoc sd : foundDocs2.scoreDocs) 
-		{
+		for (ScoreDoc sd : foundDocs2.scoreDocs) {
 			Document d = searcher.doc(sd.doc);
 			System.out.println(String.format(d.get("body")));
 		}
 	}
-	private static TopDocs searchByKeyword(String keyword, IndexSearcher searcher) throws Exception
-	{
+
+	private static TopDocs searchByKeyword(String keyword, IndexSearcher searcher) throws Exception {
 		QueryParser qp = new QueryParser("BODY", new StandardAnalyzer());
 		Query firstNameQuery = qp.parse(keyword);
 		TopDocs hits = searcher.search(firstNameQuery, 10);
 		return hits;
 	}
 	
-	private static TopDocs searchByFirstName(String firstName, IndexSearcher searcher) throws Exception
-	{
+	private static TopDocs searchByFirstName(String firstName, IndexSearcher searcher) throws Exception {
 		QueryParser qp = new QueryParser("firstName", new StandardAnalyzer());
 		Query firstNameQuery = qp.parse(firstName);
 		TopDocs hits = searcher.search(firstNameQuery, 10);
 		return hits;
 	}
 
-	private static TopDocs searchById(Integer id, IndexSearcher searcher) throws Exception
-	{
+	private static TopDocs searchById(Integer id, IndexSearcher searcher) throws Exception {
 		QueryParser qp = new QueryParser("id", new StandardAnalyzer());
 		Query idQuery = qp.parse(id.toString());
 		TopDocs hits = searcher.search(idQuery, 10);
