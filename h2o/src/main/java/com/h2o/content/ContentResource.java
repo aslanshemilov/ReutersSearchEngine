@@ -22,63 +22,27 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import io.swagger.annotations.ApiOperation;
 
+/**
+ * Returns a list of content related to query.
+ * 
+ * @author shilpakancharla
+ */
+
 @RestController
 public class ContentResource {
 
+	/** Database of content */
 	@Autowired
 	private ContentRepository contentRepository;
+
+	/**
+ 	 * Retrieving requested data from database.
+ 	 *
+	 * @return list of content requested
+	 */
 
 	@GetMapping("/list-content")
 	public List<Content> retrieveAllStudents() {
 		return contentRepository.findAll();
 	}
-
-//	@GetMapping("/search-content/{keyword}")
-//	@ApiOperation(value = "Search Content by keyword",
-//    notes = "Returns list search results that matches the keyword")
-//	public Resource<Student> retrieveStudent(@PathVariable String keyword) {
-//		Optional<Student> student = contentRepository.findById(keyword);
-//
-//		if (!student.isPresent())
-//			throw new StudentNotFoundException("id-" + id);
-//
-//		Resource<Student> resource = new Resource<Student>(student.get());
-//
-//		ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).retrieveAllStudents());
-//
-//		resource.add(linkTo.withRel("all-students"));
-//
-//		return resource;
-//	}
-//
-//	@DeleteMapping("/students/{id}")
-//	public void deleteStudent(@PathVariable long id) {
-//		contentRepository.deleteById(id);
-//	}
-//
-//	@PostMapping("/students")
-//	public ResponseEntity<Object> createStudent(@RequestBody Student student) {
-//		Student savedStudent = contentRepository.save(student);
-//
-//		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-//				.buildAndExpand(savedStudent.getId()).toUri();
-//
-//		return ResponseEntity.created(location).build();
-//
-//	}
-//	
-//	@PutMapping("/students/{id}")
-//	public ResponseEntity<Object> updateStudent(@RequestBody Student student, @PathVariable long id) {
-//
-//		Optional<Student> studentOptional = contentRepository.findById(id);
-//
-//		if (!studentOptional.isPresent())
-//			return ResponseEntity.notFound().build();
-//
-//		student.setId(id);
-//		
-//		contentRepository.save(student);
-//
-//		return ResponseEntity.noContent().build();
-//	}
 }

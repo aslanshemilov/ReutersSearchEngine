@@ -10,15 +10,27 @@ import io.swagger.annotations.ApiModelProperty;
 
 @Entity
 @ApiModel(description="All details about the student. ")
+
+/**
+ * Class for creating a Student object.
+ * 
+ * @author shilpakancharla
+ */
+
 public class Student {
 	@Id
 	@GeneratedValue
+
+	/** ID number (in Wrapper class) */
 	private Long id;
 	
-	@ApiModelProperty(notes="Name should have atleast 2 characters")
-	@Size(min=2, message="Name should have atleast 2 characters")
+	@ApiModelProperty(notes="Name should have at least 2 characters")
+	@Size(min=2, message="Name should have at least 2 characters")
+
+	/** Name */
 	private String name;
 	
+	/** Passport number */
 	private String passportNumber;
 	
 	public Student() {
